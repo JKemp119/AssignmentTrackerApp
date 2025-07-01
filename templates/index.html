@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>📘 Welcome to the Assignment Tracker</h1>
+
+{% if session.username %}
+    <p>You are logged in as <strong>{{ session.username }}</strong></p>
+    <p><a href="/logout">Logout</a></p>
+{% else %}
+    <p>You are not logged in.</p>
+    <p><a href="/login">Login</a></p>
+{% endif %}
+
+{% endblock %}

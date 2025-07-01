@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>📋 All Assignments</h2>
+  {% if assignments %}
+    <ul class="list-group mt-3">
+  {% for a in assignments %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div>
+        <strong>{{ a.title }}</strong> — for <em>{{ a.username }}</em><br>
+        Due: {{ a.due_date }} |
+        Status:
+        {% if a.status == 'completed' %}
+          <span class="badge bg-success">✅ Completed</span>
+        {% else %}
+          <span class="badge bg-warning text-dark">Pending</span>
+        {% endif %}
+        <br>
+        {% if a.description %}
+          <small class="text-muted">{{ a.description }}</small>
+        {% endif %}
+      </div>
+
+      {% if a.status != 'completed' %}
+        <form method="POST" action="/assignments/complete/{{ a.id }}">
+          <button type="submit" class="btn btn-sm btn-outline-success">✔ Mark Complete</button>
+        </form>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+  {% else %}
+    <p>No assignments yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
