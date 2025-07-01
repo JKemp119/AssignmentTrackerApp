@@ -1,3 +1,4 @@
+'''
 import sqlite3
 
 conn = sqlite3.connect("assignments.db")
@@ -28,3 +29,4 @@ CREATE TABLE IF NOT EXISTS assignments (
 conn.commit()
 conn.close()
 print("✅ Tables created successfully.")
+'''
